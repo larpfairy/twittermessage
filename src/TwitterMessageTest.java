@@ -34,12 +34,17 @@ public class TwitterMessageTest {
 	public void MentionsTest() {
 		assertEquals("@franky", myMessage.getMentions().get(0));
 		assertTrue(1 == myMessage.getMentions().size());
+		myMessage.addMentions("@Michael");
+		assertTrue(2 == myMessage.getMentions().size());
 	}
 	@Test
 	public void LinksTest(){
 		assertEquals("http://cnn.com", myMessage.getLinks().get(0));
 		assertTrue(myMessage.pingUrl(myMessage.getLinks().get(0)));
 		assertFalse(myMessage.pingUrl("htp://google.com"));
+		myMessage.addLink("http://facebook.com");
+		assertTrue(myMessage.pingUrl("http://facebook.com"));
+		assertTrue(myMessage.getLinks().get(1) == "http://facebook.com");
 	}
 
 }
