@@ -53,7 +53,8 @@ public class TwitterMessage {
 	public ArrayList<String> getMentions(){
 		return mentions;
 	}
-	public boolean pingUrl(String Url){
+	public boolean pingUrl(String Url){ //Found this code at http://stackoverflow.com/questions/10551813/check-if-url-is-valid-or-exists-in-java
+										//It checks to see if a URL is valid.
 		 HttpURLConnection connection = null;
 		 try{         
 		     URL myurl = new URL(Url);        

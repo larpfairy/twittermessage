@@ -22,17 +22,24 @@ public class TwitterMessageTest {
 	public void TwitterMessageTest(){
 		assertTrue(myMessage.getTweetText() == "@franky goes to #hollywood. See http://cnn.com");
 		assertTrue(myMessage.getDate() != null);
-		assertTrue(myMessage.getWords().size() == 6);
 	}
 	
 	@Test
-	public void Mentionstest() {
+	public void WordsTest(){
+		assertTrue(myMessage.getWords().size() == 6);
+		assertEquals(myMessage.getWords().get(2), "to");
+	}
+	
+	@Test
+	public void MentionsTest() {
 		assertEquals("@franky", myMessage.getMentions().get(0));
-		assertEquals(1, myMessage.getMentions().size());
+		assertTrue(1 == myMessage.getMentions().size());
 	}
 	@Test
 	public void LinksTest(){
 		assertEquals("http://cnn.com", myMessage.getLinks().get(0));
+		assertTrue(myMessage.pingUrl(myMessage.getLinks().get(0)));
+		assertFalse(myMessage.pingUrl("htp://google.com"));
 	}
 
 }
