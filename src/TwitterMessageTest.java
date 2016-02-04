@@ -30,7 +30,7 @@ public class TwitterMessageTest {
 	}
 	@Test
 	public void LinksTest(){
-		return;
+		assertEquals("http://cnn.com", myMessage.getLinks().get(0));
 	}
 
 }

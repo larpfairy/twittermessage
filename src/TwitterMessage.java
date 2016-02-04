@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,6 +16,7 @@ public class TwitterMessage {
 	public TwitterMessage(String text){
 		tweetText = text;
 		mentions = new ArrayList<String>();
+		links = new ArrayList<String>();
 		String temp;
 		words = new ArrayList<String>(Arrays.asList(text.split("[ ]+")));
 		dateTime = LocalDateTime.now();
@@ -20,10 +24,12 @@ public class TwitterMessage {
 			if(words.get(i).charAt(0) == '@'){
 				temp = words.get(i);
 				mentions.add(temp);
-				System.out.println(temp + " added to mentions");
+				//System.out.println(temp + " added to mentions");
 			}
 			System.out.println( i + " " + words.get(i));
-			
+			if(pingUrl(words.get(i))){
+				links.add(words.get(i));
+			}
 		}
 	}
 	public TwitterMessage(){
@@ -43,5 +49,24 @@ public class TwitterMessage {
 	}
 	public ArrayList<String> getMentions(){
 		return mentions;
+	}
+	public boolean pingUrl(String Url){
+		 HttpURLConnection connection = null;
+		 try{         
+		     URL myurl = new URL(Url);        
+		     connection = (HttpURLConnection) myurl.openConnection(); 
+		     //Set request to header to reduce load as Subirkumarsao said.       
+		     connection.setRequestMethod("HEAD");         
+		     int code = connection.getResponseCode();        
+		     System.out.println("" + code); 
+		 } catch (Exception ex){
+			 System.out.println("Invalid URL");
+			 return false;
+		 //Handle invalid URL
+		 }
+		 return true;
+	}
+	public ArrayList<String> getLinks(){
+		return links;
 	}
 }
