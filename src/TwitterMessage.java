@@ -47,6 +47,9 @@ public class TwitterMessage {
 	public void setTweetText(String text){
 		this.tweetText = text;
 	}
+	public ArrayList<String> getWords(){
+		return words;
+	}
 	public ArrayList<String> getMentions(){
 		return mentions;
 	}

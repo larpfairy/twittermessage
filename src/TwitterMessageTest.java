@@ -21,6 +21,8 @@ public class TwitterMessageTest {
 	@Test
 	public void TwitterMessageTest(){
 		assertTrue(myMessage.getTweetText() == "@franky goes to #hollywood. See http://cnn.com");
+		assertTrue(myMessage.getDate() != null);
+		assertTrue(myMessage.getWords().size() == 6);
 	}
 	
 	@Test
