@@ -1,5 +1,6 @@
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.After;
@@ -18,7 +19,10 @@ public class TwitterMessageTest {
 	}
 
 	@Test
-	public void TwitterMessagetest() {
+	public void Mentionstest() {
+		ArrayList<String> myList = new ArrayList<String>();
+		myList = myMessage.getMentions();
+		assertEquals("@franky", myList.get(0));
 	}
 
 }
