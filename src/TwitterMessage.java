@@ -5,21 +5,24 @@ import java.util.List;
 
 public class TwitterMessage {
 	private String tweetText;
-	private List<String> words;
-	private List<String> mentions;
-	private List<String> links;
+	private String[] words;
+	private String[] mentions;
+	private String[] links;
 	private LocalDateTime dateTime;
 	
 	public TwitterMessage(String text){
 		tweetText = text;
 		String temp;
+		int count = 0;
 		dateTime = LocalDateTime.now();
-		this.words = Arrays.asList(text.split(" "));
-		for(int i = 0; i < words.size(); i++){
-			if(words.get(i).charAt(0) == '@'){
-				temp = words.get(i);
-				//mentions.add(temp);
+		this.words = text.split("[ ]+");
+		for(int i = 0; i < words.length; i++){
+			if(words[i].charAt(0) == '@'){
+				temp = words[i];
+				//mentions[count] = temp;
+				//count++;
 			}
+			System.out.println(words[i]);
 		}
 	}
 	public TwitterMessage(){
@@ -37,7 +40,7 @@ public class TwitterMessage {
 	public void setTweetText(String text){
 		this.tweetText = text;
 	}
-	public List<String> getMentions(){
+	public String[] getMentions(){
 		return mentions;
 	}
 }

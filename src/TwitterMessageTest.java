@@ -19,7 +19,6 @@ public class TwitterMessageTest {
 
 	@Test
 	public void TwitterMessagetest() {
-		List<String> myMentions = myMessage.getMentions();
 	}
 
 }
