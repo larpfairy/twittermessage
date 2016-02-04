@@ -19,10 +19,18 @@ public class TwitterMessageTest {
 	}
 
 	@Test
+	public void TwitterMessageTest(){
+		assertTrue(myMessage.getTweetText() == "@franky goes to #hollywood. See http://cnn.com");
+	}
+	
+	@Test
 	public void Mentionstest() {
-		ArrayList<String> myList = new ArrayList<String>();
-		myList = myMessage.getMentions();
-		assertEquals("@franky", myList.get(0));
+		assertEquals("@franky", myMessage.getMentions().get(0));
+		assertEquals(1, myMessage.getMentions().size());
+	}
+	@Test
+	public void LinksTest(){
+		return;
 	}
 
 }

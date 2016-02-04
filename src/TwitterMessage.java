@@ -14,7 +14,6 @@ public class TwitterMessage {
 		tweetText = text;
 		mentions = new ArrayList<String>();
 		String temp;
-		int count = 0;
 		words = new ArrayList<String>(Arrays.asList(text.split("[ ]+")));
 		dateTime = LocalDateTime.now();
 		for(int i = 0; i < words.size(); i++){
