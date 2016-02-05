@@ -59,13 +59,13 @@ public class TwitterMessage {//This object will hold all of the relevant Tweet i
 	public ArrayList<String> getMentions(){//returns ArrayList of all valid mentions in the tweetText
 		return mentions;
 	}
-	public void addMentions(String mention){
+	public void addMentions(String mention){//adds a mention to the mentions ArrayList
 		if(mentions == null){
 			mentions = new ArrayList<String>();
 		}
 		mentions.add(mention);
 	}
-	public void setMentionsFromWords(){
+	public void setMentionsFromWords(){//populates mentions based on words Arraylist
 		String temp;
 		if(mentions == null){
 			mentions = new ArrayList<String>();
@@ -99,7 +99,7 @@ public class TwitterMessage {//This object will hold all of the relevant Tweet i
 		 }
 		 return true;
 	}
-	public ArrayList<String> getLinks(){
+	public ArrayList<String> getLinks(){//returns an array of links.
 		return links;
 	}
 	public void addLink(String link){
