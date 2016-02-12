@@ -11,7 +11,7 @@ public class TwitterMessageTest {
 	TwitterMessage myMessage;
 	@Before
 	public void setUp() throws Exception {
-		myMessage = new TwitterMessage("@franky goes to #hollywood. See http://cnn.com");
+		myMessage = new TwitterMessage("@franky goes to #hollywood See http://cnn.com");
 	}
 
 	@After
@@ -20,7 +20,7 @@ public class TwitterMessageTest {
 
 	@Test
 	public void TwitterMessageTest(){
-		assertTrue(myMessage.getTweetText() == "@franky goes to #hollywood. See http://cnn.com");
+		assertTrue(myMessage.getTweetText() == "@franky goes to #hollywood See http://cnn.com");
 		assertTrue(myMessage.getDate() != null);
 	}
 	
@@ -43,6 +43,10 @@ public class TwitterMessageTest {
 		myMessage.addLink("http://facebook.com");
 		assertTrue(myMessage.pingUrl("http://facebook.com"));
 		assertTrue(myMessage.getLinks().get(1) == "http://facebook.com");
+	}
+	@Test
+	public void HashtagsTest(){
+		assertEquals(myMessage.getHashTags().get(0), "#hollywood");
 	}
 
 }

@@ -3,6 +3,7 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.*;
 
 /*
  * The TwitterMessage class is intended to hold all of the tweet data and
@@ -62,7 +63,7 @@ public class TwitterMessage {
 			}
 			
 			//add hashtags
-			if(words.get(i).charAt(0) == '#'){
+			if(words.get(i).matches("[##]+([A-Za-z0-9-_]+)")){
 				hashtags.add(words.get(i));
 			}
 			
