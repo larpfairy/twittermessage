@@ -57,9 +57,8 @@ public class TwitterMessage {
 		for(int i = 0; i < words.size(); i++){
 			
 			//add mentions
-			if(words.get(i).charAt(0) == '@'){
+			if(words.get(i).matches("[@@]+([A-Za-z]+)")){
 				mentions.add(words.get(i));
-				//System.out.println(temp + " added to mentions");
 			}
 			
 			//add hashtags
@@ -123,9 +122,13 @@ public class TwitterMessage {
 		 }
 		 return true;
 	}
-	public ArrayList<String> getLinks(){//returns an array of links.
+	
+	//returns an ArrayList of Links
+	public ArrayList<String> getLinks(){
 		return links;
 	}
+	
+	//Adds a string to links if it is valid
 	public void addLink(String link){
 		if(pingUrl(link)){
 			links.add(link);
