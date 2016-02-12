@@ -34,8 +34,6 @@ public class TwitterMessageTest {
 	public void MentionsTest() {
 		assertEquals("@franky", myMessage.getMentions().get(0));
 		assertTrue(1 == myMessage.getMentions().size());
-		myMessage.addMentions("@Michael");
-		assertTrue(2 == myMessage.getMentions().size());
 	}
 	@Test
 	public void LinksTest(){

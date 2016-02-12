@@ -37,75 +37,73 @@ public class TwitterMessage {
 	
 	//Constructor which takes a twitter message in the form of a string and parses
 	//the words into the relevant ArrayLists upon instantiation.
-	public TwitterMessage(String text){ 
+	public TwitterMessage(String text){
+		
+		//records text of the tweet
 		tweetText = text;
+		
+		//initializes all ArrayLists and parses tweetText into words
 		mentions = new ArrayList<String>();
 		links = new ArrayList<String>();
-		String temp;
 		words = new ArrayList<String>(Arrays.asList(text.split("[ ]+")));
-		dateTime = LocalDateTime.now();
+		hashtags = new ArrayList<String>();
+		
+		//sets the date
+		this.setDate();
+		
+		//populates mentions, links, and hashtags
+		//TODO use regular expressions
 		for(int i = 0; i < words.size(); i++){
+			
+			//add mentions
 			if(words.get(i).charAt(0) == '@'){
-				temp = words.get(i);
-				mentions.add(temp);
+				mentions.add(words.get(i));
 				//System.out.println(temp + " added to mentions");
 			}
-			System.out.println( i + " " + words.get(i));//prints out the string that is being url tested
+			
+			//add hashtags
+			if(words.get(i).charAt(0) == '#'){
+				hashtags.add(words.get(i));
+			}
+			
+			//add urls, prints out the string that is being url tested
+			System.out.println( i + " " + words.get(i));
 			if(pingUrl(words.get(i))){
 				links.add(words.get(i));
 			}
 		}
 	}
-	/*public TwitterMessage(){//Decided to remove this as ideally if a tweet exists, it has text.
-		dateTime = LocalDateTime.now();
-	}*/
-	public String getDate(){//returns a date in string format
+	
+	//returns a date in string format
+	public String getDate(){
 		return this.dateTime.toString();
 	}
-	public void setDate(){//sets the date to the current time
+	
+	//sets the date to the current time
+	public void setDate(){
 		this.dateTime = LocalDateTime.now();
 	}
-	public String getTweetText(){//returns the string that contains the text of the tweet
+	
+	//returns the string that contains the text of the tweet
+	public String getTweetText(){
 		return tweetText;
 	}
-	public void setTweetText(String text){//changes the text of the tweet to the provided string arg
-		this.tweetText = text;
-	}
-	public ArrayList<String> getWords(){//returns the array of all words found in the tweetText
+	
+	//returns the array of all words found in the tweetText
+	public ArrayList<String> getWords(){
 		return words;
 	}
-	public void setWords(String word){
-		if(words == null){
-			words = new ArrayList<String>();
-		}
-		words.add(word);
+	
+	//returns ArrayList of all hashtags in the tweet
+	public ArrayList<String> getHashTags(){
+		return hashtags;
 	}
-	public ArrayList<String> getMentions(){//returns ArrayList of all valid mentions in the tweetText
+	
+	//returns ArrayList of all valid mentions in the tweetText
+	public ArrayList<String> getMentions(){
 		return mentions;
 	}
-	public void addMentions(String mention){//adds a mention to the mentions ArrayList
-		if(mentions == null){
-			mentions = new ArrayList<String>();
-		}
-		mentions.add(mention);
-	}
-	public void setMentionsFromWords(){//populates mentions based on words Arraylist
-		String temp;
-		if(mentions == null){
-			mentions = new ArrayList<String>();
-		}
-		if(words != null){
-			for(int i = 0; i < words.size(); i++){
-				if(words.get(i).charAt(0) == '@'){
-					temp = words.get(i);
-					mentions.add(temp);
-				}
-		else{
-			System.out.println("Words is not set");
-			}
-			}
-		}
-	}
+	
 	//TODO move pingUrl to its own class
 	public boolean pingUrl(String Url){ //Found this code at http://stackoverflow.com/questions/10551813/check-if-url-is-valid-or-exists-in-java
 										//It checks to see if a URL is valid.
