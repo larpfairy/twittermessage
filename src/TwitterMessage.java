@@ -1,19 +1,43 @@
-import java.io.BufferedReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
-public class TwitterMessage {//This object will hold all of the relevant Tweet information.
-	private String tweetText;//the actual word for word text of the tweet.
-	private ArrayList<String> words;//All of the words in the tweet, separeted out into indexes of an ArrayList of strings
-	private ArrayList<String> mentions;//Any mentions that are detected are put into an Arraylist called mentions.
-	private ArrayList<String> links;//Any valid URL's that are contained in the tweetText will be put into this Arraylist
-	private LocalDateTime dateTime;//The date of the tweet is recorded and stored in this variable.
+/*
+ * The TwitterMessage class is intended to hold all of the tweet data and
+ * contains all of the relevant functionality.
+ * 
+ * All mentions, links, words, and hashtags are parsed upon the instantiation of the tweet object
+ * and placed into the corresponding ArrayList.
+ * 
+ * 
+ */
+
+
+public class TwitterMessage {
 	
-	public TwitterMessage(String text){//Constructor which takes a twitter message in the form of a string and parses it into the relevant 
+	//the actual word for word text of the tweet.
+	private String tweetText;
+	
+	//All of the words in the tweet, separated out into indexes of an ArrayList of strings
+	private ArrayList<String> words;
+	
+	//All of the hashtags found in the tweetText get put into hashtags
+	private ArrayList<String> hashtags;
+	
+	//Any mentions that are detected are put into an Arraylist called mentions.
+	private ArrayList<String> mentions;
+	
+	//Any valid URL's that are contained in the tweetText will be put into this Arraylist
+	private ArrayList<String> links;
+	
+	//The date of the tweet is recorded and stored in this variable
+	private LocalDateTime dateTime;
+	
+	//Constructor which takes a twitter message in the form of a string and parses
+	//the words into the relevant ArrayLists upon instantiation.
+	public TwitterMessage(String text){ 
 		tweetText = text;
 		mentions = new ArrayList<String>();
 		links = new ArrayList<String>();
@@ -32,9 +56,9 @@ public class TwitterMessage {//This object will hold all of the relevant Tweet i
 			}
 		}
 	}
-	public TwitterMessage(){//constructor without a string argument, only sets the creation date
+	/*public TwitterMessage(){//Decided to remove this as ideally if a tweet exists, it has text.
 		dateTime = LocalDateTime.now();
-	}
+	}*/
 	public String getDate(){//returns a date in string format
 		return this.dateTime.toString();
 	}
@@ -82,6 +106,7 @@ public class TwitterMessage {//This object will hold all of the relevant Tweet i
 			}
 		}
 	}
+	//TODO move pingUrl to its own class
 	public boolean pingUrl(String Url){ //Found this code at http://stackoverflow.com/questions/10551813/check-if-url-is-valid-or-exists-in-java
 										//It checks to see if a URL is valid.
 		 HttpURLConnection connection = null;
