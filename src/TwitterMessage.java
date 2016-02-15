@@ -69,7 +69,6 @@ public class TwitterMessage {
 			}
 			
 			//add urls, prints out the string that is being url tested
-			System.out.println( i + " " + words.get(i));
 			if(myUtility.pingUrl(words.get(i))){
 				links.add(words.get(i));
 			}

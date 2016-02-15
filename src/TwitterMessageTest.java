@@ -9,10 +9,17 @@ import org.junit.Test;
 
 public class TwitterMessageTest {
 	TwitterMessage myMessage;
+	TwitterMessage myMessage1;
+	TwitterMessage myMessage2;
+	TwitterMessage myMessage3;
 	Utilities myUtility;
 	@Before
 	public void setUp() throws Exception {
 		myMessage = new TwitterMessage("@franky goes to #hollywood See http://cnn.com");
+		myMessage1 = new TwitterMessage("#@test this tweet is a @#test");
+		myMessage2 = new TwitterMessage("@mentionmentionmentionmentionmentionmentionmention #topic**((&#(@#&");
+		myMessage3 = new TwitterMessage("@michael @tommy @#@myname)--0 hello %4@@@ @michael. http://github.com github.com http:facebook.com");
+		
 		myUtility = new Utilities();
 	}
 
@@ -23,6 +30,7 @@ public class TwitterMessageTest {
 	@Test
 	public void TwitterMessageTest(){
 		assertTrue(myMessage.getTweetText() == "@franky goes to #hollywood See http://cnn.com");
+		assertEquals(myMessage.getWords().get(3), "#hollywood");
 		assertTrue(myMessage.getDate() != null);
 	}
 	
