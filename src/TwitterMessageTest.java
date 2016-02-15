@@ -9,9 +9,11 @@ import org.junit.Test;
 
 public class TwitterMessageTest {
 	TwitterMessage myMessage;
+	Utilities myUtility;
 	@Before
 	public void setUp() throws Exception {
 		myMessage = new TwitterMessage("@franky goes to #hollywood See http://cnn.com");
+		myUtility = new Utilities();
 	}
 
 	@After
@@ -38,10 +40,10 @@ public class TwitterMessageTest {
 	@Test
 	public void LinksTest(){
 		assertEquals("http://cnn.com", myMessage.getLinks().get(0));
-		assertTrue(myMessage.pingUrl(myMessage.getLinks().get(0)));
-		assertFalse(myMessage.pingUrl("htp://google.com"));
+		assertTrue(myUtility.pingUrl(myMessage.getLinks().get(0)));
+		assertFalse(myUtility.pingUrl("htp://google.com"));
 		myMessage.addLink("http://facebook.com");
-		assertTrue(myMessage.pingUrl("http://facebook.com"));
+		assertTrue(myUtility.pingUrl("http://facebook.com"));
 		assertTrue(myMessage.getLinks().get(1) == "http://facebook.com");
 	}
 	@Test

@@ -21,6 +21,8 @@ public class TwitterMessage {
 	//the actual word for word text of the tweet.
 	private String tweetText;
 	
+	Utilities myUtility = new Utilities();
+	
 	//All of the words in the tweet, separated out into indexes of an ArrayList of strings
 	private ArrayList<String> words;
 	
@@ -68,7 +70,7 @@ public class TwitterMessage {
 			
 			//add urls, prints out the string that is being url tested
 			System.out.println( i + " " + words.get(i));
-			if(pingUrl(words.get(i))){
+			if(myUtility.pingUrl(words.get(i))){
 				links.add(words.get(i));
 			}
 		}
@@ -104,25 +106,6 @@ public class TwitterMessage {
 		return mentions;
 	}
 	
-	//TODO move pingUrl to its own class
-	public boolean pingUrl(String Url){ //Found this code at http://stackoverflow.com/questions/10551813/check-if-url-is-valid-or-exists-in-java
-										//It checks to see if a URL is valid.
-		 HttpURLConnection connection = null;
-		 try{         
-		     URL myurl = new URL(Url);        
-		     connection = (HttpURLConnection) myurl.openConnection(); 
-		     //Set request to header to reduce load as Subirkumarsao said.       
-		     connection.setRequestMethod("HEAD");         
-		     int code = connection.getResponseCode();        
-		     System.out.println("" + code); 
-		 } catch (Exception ex){
-			 System.out.println("Invalid URL");
-			 return false;
-		 //Handle invalid URL
-		 }
-		 return true;
-	}
-	
 	//returns an ArrayList of Links
 	public ArrayList<String> getLinks(){
 		return links;
@@ -130,7 +113,7 @@ public class TwitterMessage {
 	
 	//Adds a string to links if it is valid
 	public void addLink(String link){
-		if(pingUrl(link)){
+		if(myUtility.pingUrl(link)){
 			links.add(link);
 		}
 		
