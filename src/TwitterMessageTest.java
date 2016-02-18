@@ -49,6 +49,9 @@ public class TwitterMessageTest {
 	public void MentionsTest() {
 		assertEquals("@franky", myMessage.getMentions().get(0));
 		assertTrue(1 == myMessage.getMentions().size());
+		assertTrue(myMessage1.getMentions().size() == 0);
+		assertTrue(myMessage2.getMentions().size() == 1);
+		assertTrue(myMessage3.getMentions().size() == 2);
 	}
 	@Test
 	public void LinksTest(){
@@ -62,6 +65,10 @@ public class TwitterMessageTest {
 	@Test
 	public void HashtagsTest(){
 		assertEquals(myMessage.getHashTags().get(0), "#hollywood");
+		assertTrue(myMessage.getHashTags().size() == 1);
+		assertTrue(myMessage1.getHashTags().size() == 0);
+		assertTrue(myMessage2.getHashTags().size() == 0);
+		assertTrue(myMessage3.getHashTags().size() == 0);
 	}
 
 }
