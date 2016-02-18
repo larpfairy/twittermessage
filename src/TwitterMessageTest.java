@@ -31,12 +31,17 @@ public class TwitterMessageTest {
 	public void TwitterMessageTest(){
 		assertTrue(myMessage.getTweetText() == "@franky goes to #hollywood See http://cnn.com");
 		assertEquals(myMessage.getWords().get(3), "#hollywood");
+		assertEquals(myMessage1.getWords().get(3), "is");
+		assertEquals(myMessage2.getWords().get(1), "#topic**((&#(@#&");
 		assertTrue(myMessage.getDate() != null);
 	}
 	
 	@Test
 	public void WordsTest(){
 		assertTrue(myMessage.getWords().size() == 6);
+		assertTrue(myMessage3.getWords().size() == 9);
+		assertTrue(myMessage2.getWords().size() == 2);
+		assertTrue(myMessage1.getWords().size() == 6);
 		assertEquals(myMessage.getWords().get(2), "to");
 	}
 	

@@ -8,7 +8,6 @@ public class Utilities {
 	try{         
 		URL myurl = new URL(Url);        
 		connection = (HttpURLConnection) myurl.openConnection(); 
-		//Set request to header to reduce load as Subirkumarsao said.       
 		connection.setRequestMethod("HEAD");         
 		int code = connection.getResponseCode();        
 		System.out.println("" + code);
